@@ -1,0 +1,305 @@
+@media (min-width: 992px) {
+  body {
+    width: 100%;
+    height: 1447px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    width: 426px;
+    height: 566px;
+
+    border: 2px solid #E0E0E0;
+    background-color: rgb(255, 255, 255);
+  }
+  .posts {
+    display: grid;
+    grid-gap: 10px;
+
+    margin: 0 4%;
+    margin-top: 130px;
+
+    grid-template-columns: repeat(4, 430px);
+    grid-auto-rows: 570px;
+  }
+  .button {
+    width: 1755px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8%;
+  }
+}
+@media (max-width: 992px) {
+  body {
+    width: 100%;
+    height: 1447px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    width: 426px;
+    height: 566px;
+
+    border: 2px solid #E0E0E0;
+    background-color: rgb(255, 255, 255);
+  }
+  .posts {
+    display: grid;
+    grid-gap: 10px;
+
+    margin: 0 8%;
+    margin-top: 130px;
+
+    grid-template-columns: repeat(2, 430px);
+    grid-auto-rows: 570px;
+  }
+  .button {
+    width: 870px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8%;
+  }
+}
+@media (max-width: 768px) {
+  body {
+    width: 768px;
+    height: 1447px;
+    margin: 0;
+    padding: 0;
+  }
+
+  .box {
+    width: 426px;
+    height: 566px;
+
+    border: 2px solid #E0E0E0;
+    background-color: rgb(255, 255, 255);
+  }
+  .posts {
+    display: grid;
+    grid-gap: 10px;
+
+    margin: 0 0;
+    margin-top: 130px;
+
+    grid-template-columns: repeat(1, 430px);
+    grid-auto-rows: 570px;
+  }
+  .button {
+    width: 465px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 8%;
+  }
+}
+
+
+.screen{
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 300px;
+}
+
+button {
+  width: 137px;
+  height: 53px;
+  
+  margin-top: 55px;
+  margin-bottom: 59px;
+
+  background: #0081ff;
+  color: white;
+
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 5px;
+  border: transparent;
+}
+button:hover {
+  background-color: #49a4ff;
+  cursor: pointer;
+}
+
+/* .card{
+  width: 100%;
+  height: 100%;
+} */
+.user {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  height: 48px;
+  margin: 16px;
+}
+
+.image {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #0081ff;
+}
+.imgCircle {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.post{
+  margin: 15px;
+}
+
+.photo{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.photoBox{
+  background-color: #0081ff;
+  width: 400px;
+  height: 325px;
+}
+
+.captionBox{
+  margin-top: 19px;
+  width:400px;
+  height: 65px;
+  overflow-y: hidden;
+}
+.caption{
+  font-family: sans-serif;
+  line-height: 22px;
+}
+
+.likeButtonBox{
+  margin-top: 19px;
+  display: flex;
+  flex-direction: row;
+}
+.likeCount{
+  font-family: sans-serif;
+  margin-left: 4px;
+}
+.Red{
+  filter:brightness(0) saturate(100%) invert(24%) sepia(98%) saturate(5319%) hue-rotate(354deg) brightness(93%) contrast(123%);
+}
+.likeButton:hover{
+  cursor: pointer;
+}
+.info{
+  flex-shrink: 0;
+  align-self: center;
+  margin-left: 15px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+.name{
+  font-weight: bold;
+  font-size: 16px;
+}
+.date{
+  font-size: 12px;
+}
+p{
+  margin: 0;
+}
+
+.instaLogo{
+  margin-left: 112px;
+  
+  width: 24px;
+  align-self: center;
+}
+
+object{
+  pointer-events: none;
+}
+
+.bc{
+background-color: red;
+}
+
+.hide{
+  display: none;
+}
+
+.show{
+  display: block;
+}
+
+.dialogBoxContainer{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.dialogBox{
+  position: fixed;
+  width: 875px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+ padding: 10px;
+ 
+}
+.photoBoxDialog{
+  width: 506px;
+  height: 506px;
+  background-color: #0081ff;
+  flex-shrink: 0;
+}
+.photoDialog{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+
+.dialogBackground{
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.userDialog {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(255, 255, 255);
+  height: 48px;
+  margin: 13px;
+}
+
+.DialogRight{
+  display: flex;
+  flex-direction: column;
+}
+.instalogoDialog{
+  margin-left: 50px;
+  align-self: center;
+}
+.captionDialog{
+  padding: 13px;
+}
+.likeButtonBoxDialog{
+  margin-top: 25px;
+  margin-left: 13px;
+  display: flex;
+  flex-direction: row;
+}
+.likeCountDialog{
+  margin-left: 5px;
+}
