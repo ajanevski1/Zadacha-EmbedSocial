@@ -104,32 +104,35 @@ xhttp.onreadystatechange = function () {
     const likeCounter = (item) => {
       item.querySelector(".likeButton").classList.toggle("Red");
       let value = item.querySelector(".likeCount").getAttribute("value");
+      let index = item.getAttribute("value");
       let likeNum = item.querySelector(".likeCount").innerHTML;
-      console.log(item);
+      console.log("index: "+index);
 
       if(value == 0){
           item.querySelector(".likeCount").innerHTML = ++likeNum;
           item.querySelector(".likeCount").setAttribute("value",1);
+          data[index].likes += 1;
+          
       } 
       else {
           item.querySelector(".likeCount").innerHTML = --likeNum;
-         item.querySelector(".likeCount").setAttribute("value",0);
+          item.querySelector(".likeCount").setAttribute("value",0);
+          data[index].likes -= 1;
       }
     }
 
     //Create dialog
-    const DialogBoxOpen = (picture,likeValue) =>{
+    const DialogBoxOpen = (picture) =>{
       console.log("picture")
       
        let DialogBoxCard = document.createElement("div");
-       let photoDialog = picture.querySelector(".photo").getAttribute("src");
        let valueBox = parseInt(picture.getAttribute("value"));
-       let likeValue1 = document.querySelector(".likeCount").getAttribute("value");
-       console.log("likevaluie"+likeValue1);
+      //  let likeValue1 = picture.querySelector(".likeCount").getAttribute("value");
+      //  console.log("likevaluie"+likeValue1);
 
        DialogBoxCard.innerHTML =
        '<div class="dialogBox">'+
-              '<div class="photoBoxDialog"><img class="photoDialog" src="'+photoDialog+'"></div>'+
+              '<div class="photoBoxDialog"><img class="photoDialog" src="'+data[valueBox].image+'"></div>'+
               '<div class="DialogRight">'+
                 '<div class="userDialog">' +
                     '<div class="image">' +
@@ -154,7 +157,7 @@ xhttp.onreadystatechange = function () {
        DialogBoxCard.classList.add("dialogBoxContainer");
        document.querySelector(".Dialog").append(DialogBoxCard);
 
-       //remove dialog
+       //remove dialog  
        document.querySelector(".dialogBackground").addEventListener("click",function(){
         console.log("da");
         DialogBoxCard.remove();
@@ -164,25 +167,34 @@ xhttp.onreadystatechange = function () {
        document.querySelector(".likeButtonBoxDialog").addEventListener("click",function(){
         console.log("DIALOG");
         
+                  this.querySelector(".heart").classList.toggle("Red");
+                  let likeNum = parseInt(this.querySelector(".likeCountDialog").innerHTML);
 
-        this.querySelector(".likeButton").classList.toggle("Red");
-        let likeNum = parseInt(this.querySelector(".likeCountDialog").innerHTML);
+                if(valueD == 0){
+                    this.querySelector(".likeCountDialog").innerHTML = ++likeNum;
+                    valueD = 1;
+                } 
+                else {
+                    this.querySelector(".likeCountDialog").innerHTML = --likeNum;
+                  valueD = 0;
+                }
 
-      if(valueD == 0){
-          this.querySelector(".likeCountDialog").innerHTML = ++likeNum;
-          valueD = 1;
-      } 
-      else {
-          this.querySelector(".likeCountDialog").innerHTML = --likeNum;
-         valueD = 0;
-      }
+                // let postCard = document.querySelector(".photoBox").getAttribute("value");
+                // console.log("========"+postCard);
+
+                // likeCounter();
+
+
       });
        
 
 
     }//END of function
   
-    
+    // document.querySelector("#btn2").addEventListener("click",function(){
+    //   data[0].likes = '1000';
+    //   console.log("clsdkfksdnf");
+    // })
   }
 };
 xhttp.open("GET", "data.json", true);
