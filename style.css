@@ -192,6 +192,7 @@ button:hover {
 }
 .Red{
   filter:brightness(0) saturate(100%) invert(24%) sepia(98%) saturate(5319%) hue-rotate(354deg) brightness(93%) contrast(123%);
+  z-index: 0;
 }
 .likeButton:hover{
   cursor: pointer;
@@ -246,6 +247,7 @@ background-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
 }
 .dialogBox{
   position: fixed;

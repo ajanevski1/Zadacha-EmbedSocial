@@ -184,10 +184,7 @@ xhttp.onreadystatechange = function () {
 
                 // likeCounter();
 
-
       });
-       
-
 
     }//END of function
   
