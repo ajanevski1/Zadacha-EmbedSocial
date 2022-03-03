@@ -5,7 +5,7 @@ xhttp.onreadystatechange = function () {
     const data = JSON.parse(xhttp.responseText);
     const postsContainer = document.querySelector(".posts");
     const button = document.querySelector("#btn");
-    let valueD = 0;
+    
     
     //number of posts to load per click
     let nMin = 0;
@@ -45,14 +45,14 @@ xhttp.onreadystatechange = function () {
                         '<div class="instaLogo"><object data="instagram-logo.svg"></object></div>'+
                 '</div>'+
                 '<div class="post post'+j+'">'+
-                    '<div liked="0" value="'+i+'" class="photoBox photoBox'+j+'">'+
+                    '<div value="'+i+'" class="photoBox photoBox'+j+'">'+
                         '<img class="photo" src="'+ data[i].image +'">'+
                     '</div>'+
                     '<div class="captionBox">'+
                             '<p class="caption">'+data[i].caption+'</p>'+
                         '</div>'+
                         '<hr style="height:1px;border-width:0;background-color:#E0E0E0">'+
-                    '<div value="'+i+'" class="likeButtonBox likeButtonBox'+j+'">'+
+                    '<div liked="0" value="'+i+'" class="index'+i+' likeButtonBox likeButtonBox'+j+'">'+
                         '<div  class="likeButton"><object class="heart" data="heart.svg"></object></div>'+
                         '<span class="likeCount" value="0">'+ data[i].likes +'</span>'+
                     '</div>'+
@@ -111,13 +111,15 @@ xhttp.onreadystatechange = function () {
       if(value == 0){
           item.querySelector(".likeCount").innerHTML = ++likeNum;
           item.querySelector(".likeCount").setAttribute("value",1);
-          data[index].likes += 1;
+          // data[index].likes = parseInt(data[index].likes)+1;
+          item.setAttribute("liked",1);
           
       } 
       else {
           item.querySelector(".likeCount").innerHTML = --likeNum;
           item.querySelector(".likeCount").setAttribute("value",0);
-          data[index].likes -= 1;
+          // data[index].likes = parseInt(data[index].likes)-1;
+          item.setAttribute("liked",0);
       }
     }
 
@@ -127,6 +129,11 @@ xhttp.onreadystatechange = function () {
       
        let DialogBoxCard = document.createElement("div");
        let valueBox = parseInt(picture.getAttribute("value"));
+       let likedFlag = parseInt(document.querySelector(".index"+valueBox).getAttribute("liked"));
+       let likeButton = document.querySelector(".index"+valueBox+" > div");
+       let valueD = likedFlag;
+       let currentLikes = parseInt(data[valueBox].likes);
+       let newLikes = currentLikes+likedFlag;
       //  let likeValue1 = picture.querySelector(".likeCount").getAttribute("value");
       //  console.log("likevaluie"+likeValue1);
 
@@ -148,7 +155,7 @@ xhttp.onreadystatechange = function () {
                 '<div class="captionDialog">'+data[valueBox].caption+'</div>'+
                 '<div value="'+0+'" class="likeButtonBoxDialog">'+
                         '<div  class="likeButton"><object class="heart" data="heart.svg"></object></div>'+
-                        '<span class="likeCountDialog" value="0">'+ data[valueBox].likes +'</span>'+
+                        '<span class="likeCountDialog" value="0">'+ newLikes +'</span>'+
                     '</div>'+
               '</div>'+  
             '</div>'+
@@ -163,20 +170,35 @@ xhttp.onreadystatechange = function () {
         DialogBoxCard.remove();
        })
 
+       if(valueD == 1){
+        document.querySelector(".heart").classList.add("Red");
+       }
+
        //like inside dialog
        document.querySelector(".likeButtonBoxDialog").addEventListener("click",function(){
         console.log("DIALOG");
-        
+                  console.log(valueBox);
+
                   this.querySelector(".heart").classList.toggle("Red");
+                  //toggle main post like color
+                  likeButton.classList.toggle("Red");
+
                   let likeNum = parseInt(this.querySelector(".likeCountDialog").innerHTML);
 
                 if(valueD == 0){
                     this.querySelector(".likeCountDialog").innerHTML = ++likeNum;
                     valueD = 1;
+                    document.querySelector(".index"+valueBox).setAttribute("liked",1)
+                    document.querySelector(".index"+valueBox+" > span" ).innerHTML = ++newLikes;
+                    document.querySelector(".index"+valueBox+"> span").setAttribute("value",1)
+
                 } 
                 else {
                     this.querySelector(".likeCountDialog").innerHTML = --likeNum;
-                  valueD = 0;
+                    valueD = 0;
+                    document.querySelector(".index"+valueBox).setAttribute("liked",0)
+                    document.querySelector(".index"+valueBox+" > span").innerHTML = --newLikes;
+                    document.querySelector(".index"+valueBox+"> span").setAttribute("value",0)
                 }
 
                 // let postCard = document.querySelector(".photoBox").getAttribute("value");
